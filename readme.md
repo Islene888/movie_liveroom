@@ -113,7 +113,15 @@ docker-compose up -d --no-deps --build backend
   # 立即刷新docker权限
     newgrp docker
   
+   rm -rf ~/movie_liveroom
+
   git clone https://github.com/Islene888/movie_liveroom.git
+
+   cd movie_liveroom
+  
+   docker-compose down
+  
+   sudo docker-compose up -d
 
    ```
 
