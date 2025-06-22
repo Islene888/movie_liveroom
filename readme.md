@@ -112,6 +112,9 @@ docker-compose up -d --no-deps --build backend
      sudo usermod -aG docker $USER
   # 立即刷新docker权限
     newgrp docker
+  
+  git clone https://github.com/Islene888/movie_liveroom.git
+
    ```
 
 
