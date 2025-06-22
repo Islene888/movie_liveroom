@@ -1,0 +1,311 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  # -----------------------------------------------------------------
+  # Core Streaming Pipeline: Zookeeper, Kafka, Flink
+  # -----------------------------------------------------------------
+  zookeeper:
+    platform: linux/amd64
+    image: confluentinc/cp-zookeeper:7.6.1 # 建议使用较新且稳定的版本
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - appnet
+
+  kafka:
+    platform: linux/amd64
+    image: confluentinc/cp-kafka:7.6.1 # 建议使用较新且稳定的版本
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      # --- Kafka 网络配置优化 ---
+      # 区分对内和对外监听器，这是最健壮的配置方式
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      # --- 其他基础配置 ---
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    networks:
+      - appnet
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  jobmanager:
+    image: flink:1.17.1-java11
+    container_name: jobmanager
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+    depends_on:
+      - kafka
+    networks:
+      - appnet
+    volumes:
+      - ./libs/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar
+      - ./libs/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar
+      - ./libs/kafka-clients-3.1.0.jar:/opt/flink/lib/kafka-clients-3.1.0.jar
+      - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
+      - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
+      - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+
+  taskmanager:
+    image: flink:1.17.1-java11
+    container_name: taskmanager
+    command: taskmanager
+    depends_on:
+      - jobmanager
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+    networks:
+      - appnet
+    volumes:
+      - ./libs/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar
+      - ./libs/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar
+      - ./libs/kafka-clients-3.1.0.jar:/opt/flink/lib/kafka-clients-3.1.0.jar
+      - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
+      - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
+      - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+
+  flink-submitter:
+    image: flink:1.17.1-java11
+    container_name: flink-submitter
+    depends_on:
+      - jobmanager
+      - taskmanager
+    command: /bin/sh -c "flink run -m jobmanager:8081 -c com.ella.flinkjob.FlinkEventTypeAggregator /opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar"
+    networks:
+      - appnet
+    volumes:
+      - ./libs/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar
+      - ./libs/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar
+      - ./libs/kafka-clients-3.1.0.jar:/opt/flink/lib/kafka-clients-3.1.0.jar
+      - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
+      - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
+      - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+
+
+
+
+
+
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile  # 你的 Spring Boot 后端 Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+    networks:
+      - appnet
+
+
+
+
+
+
+
+  # -----------------------------------------------------------------
+  # 你的 Spring Boot 后端
+  # -----------------------------------------------------------------
+#
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.backend
+#    image: movie-backend:latest
+#    container_name: movie-backend
+#    depends_on:
+#      - kafka
+#      - jobmanager
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+#      SPRING_PROFILES_ACTIVE: "prod"
+#      FLINK_REST_ADDRESS: "jobmanager"
+#      FLINK_REST_PORT: "8081"
+#    networks:
+#      - appnet
+#
+
+  # -----------------------------------------------------------------
+  # 可选：Flink 作业提交器（如果你不想手动 docker exec）
+  # -----------------------------------------------------------------
+#  flink-submitter:
+#    image: flink:1.17.1-java11
+#    container_name: flink-submitter
+#    depends_on:
+#      - jobmanager
+#      - taskmanager
+#    entrypoint: [ "/bin/sh", "-c" ]
+#    command:
+#      - |
+#        for i in $(seq 1 30); do
+#          curl -sSf jobmanager:8081 || { echo "Waiting for Flink JobManager..."; sleep 2; continue; }
+#          break
+#        done
+#        flink run -m jobmanager:8081 \
+#          -c com.tik.run.KafkaEventTypeForwarder \
+#          /opt/flink/usrlib/flink-kafka-demo-0.0.1-SNAPSHOT.jar
+#    volumes:
+#      - ./target/flink-kafka-demo-0.0.1-SNAPSHOT.jar:/opt/flink/usrlib/flink-kafka-demo-0.0.1-SNAPSHOT.jar
+#    networks:
+#      - appnet
+
+
+
+
+
+
+    # -----------------------------------------------------------------
+  # Storage Layer: HDFS & MinIO (S3)
+  # -----------------------------------------------------------------
+#  hdfs-namenode:
+#    platform: linux/amd64
+#    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+#    container_name: hdfs-namenode
+#    ports:
+#      - "9870:9870"
+#    volumes:
+#      - namenode-data:/hadoop/dfs/name
+#    environment:
+#      - CLUSTER_NAME=test
+#    networks:
+#      - appnet
+#
+#  hdfs-datanode:
+#    platform: linux/amd64
+#    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+#    container_name: hdfs-datanode
+#    depends_on:
+#      - hdfs-namenode
+#    volumes:
+#      - datanode-data:/hadoop/dfs/data
+#    environment:
+#      SERVICE_PRECONDITION: "hdfs-namenode:9870" # bde2020 镜像特性
+#    networks:
+#      - appnet
+
+#  minio:
+#    image: minio/minio:latest # 使用latest或固定一个新版本
+#    container_name: minio
+#    ports:
+#      - "9000:9000"
+#      - "9001:9001"
+#    volumes:
+#      - minio_data:/data
+#    environment:
+#      MINIO_ROOT_USER: minioadmin
+#      MINIO_ROOT_PASSWORD: minioadmin
+#    command: server /data --console-address ":9001"
+#    networks:
+#      - appnet
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+
+  # -----------------------------------------------------------------
+  # SQL & Data Warehouse Layer: Hive & StarRocks
+  # -----------------------------------------------------------------
+#  hive-metastore-postgresql:
+#    platform: linux/amd64
+#    image: postgres:14-alpine # 升级PostgreSQL版本
+#    container_name: hive-metastore-postgresql
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_DB: metastore
+#      POSTGRES_USER: hive
+#      POSTGRES_PASSWORD: hivepw
+#    networks:
+#      - appnet
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U hive -d metastore"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+#  hive-metastore:
+#    platform: linux/amd64
+#    image: bde2020/hive:2.3.2-postgresql-metastore
+#    container_name: hive-metastore
+#    depends_on:
+#      - hive-metastore-postgresql
+#      - hdfs-namenode
+#    ports:
+#      - "9083:9083"
+#    environment:
+#      HIVE_METASTORE_DB_TYPE: postgres
+#      HIVE_METASTORE_DB_HOST: hive-metastore-postgresql
+#      # 注意：不再需要 SERVICE_PRECONDITION，因为我们用了更可靠的 healthcheck
+#    networks:
+#      - appnet
+#    # 提醒: 需要在本地 ./conf 目录下准备好 hive-site.xml 和 core-site.xml 文件
+#    volumes:
+#      - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml:ro
+#      - ./conf/core-site.xml:/opt/hadoop-2.7.4/etc/hadoop/core-site.xml
+
+#  starrocks-fe:
+#    image: starrocks/fe-ubuntu:latest # 使用latest或固定一个新版本
+#    container_name: starrocks-fe-1
+#    ports:
+#      - "8030:8030"
+#      - "9030:9030"
+#    environment:
+#      - FE_SERVERS=starrocks-fe-1:9030 # 建议加上端口
+#    networks:
+#      - appnet
+#
+#  starrocks-be:
+#    image: starrocks/be-ubuntu:latest # 使用latest或固定一个新版本
+#    container_name: starrocks-be-1
+#    ports:
+#      - "8040:8040"
+#    depends_on:
+#      - starrocks-fe
+#    volumes:
+#      - ./be-storage:/opt/starrocks/be/storage
+#      # 提醒: 需要在本地 ./be-conf 目录下准备好 be.conf 文件
+#      - ./be-conf/be.conf:/opt/starrocks/be/conf/be.conf
+#    networks:
+#      - appnet
+
+# -----------------------------------------------------------------
+# Volumes and Networks Definition
+# -----------------------------------------------------------------
+volumes:
+  namenode-data:
+  datanode-data:
+  pgdata:
+  minio_data:
+
+networks:
+  appnet:
+    driver: bridge

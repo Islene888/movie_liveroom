@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>电影直播间+数据看板</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Google Fonts for a cleaner look */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        /* Gradient overlays for better text readability */
+        .top-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent); }
+        .bottom-gradient { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); }
+
+        /* --- Animations --- */
+
+        /* Like Heart Animation */
+        .like-heart {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            animation: float-up 2.5s ease-out forwards;
+            pointer-events: none;
+            font-size: 2rem;
+            opacity: 1;
+        }
+
+        @keyframes float-up {
+            to {
+                transform: translateY(-400px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Comment Item Animation */
+        .comment-item {
+            padding: 6px 12px;
+            border-radius: 9999px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            margin-bottom: 8px;
+            animation: slide-in 0.5s ease-out;
+            max-width: 95%;
+            word-wrap: break-word;
+        }
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Gift Banner Animation */
+        .gift-banner {
+            animation: slide-down-fade-out 4s ease-in-out forwards;
+        }
+        @keyframes slide-down-fade-out {
+            0% { transform: translateY(-100%); opacity: 0; }
+            15% { transform: translateY(0); opacity: 1; }
+            85% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+
+        /* User Join Pill Animation */
+        .user-join-pill {
+            animation: slide-in-out 3s ease-out forwards;
+        }
+        @keyframes slide-in-out {
+            0% { opacity: 0; transform: translateX(-100%); }
+            20% { opacity: 1; transform: translateX(0); }
+            80% { opacity: 1; transform: translateX(0); }
+            100% { opacity: 0; transform: translateX(-100%); }
+        }
+
+        /* Smooth scrolling for comment container */
+        #comment-container {
+            scroll-behavior: smooth;
+        }
+
+        /* Blinking dot for live status on dashboard */
+        .blinking-dot {
+            animation: blink 1.5s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        /* --- Add these styles for the play button --- */
+        #play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Optional: darkens the poster a bit */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 15; /* Ensures it's on top of the video but below other UI */
+            transition: opacity 0.3s ease;
+        }
+
+        #play-button {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease;
+        }
+
+        #play-button:hover {
+            transform: scale(1.1);
+        }
+
+        #play-button svg {
+            width: 40px;
+            height: 40px;
+            color: #333;
+            margin-left: 5px; /* Adjusts the triangle to be perfectly centered */
+        }
+    </style>
+</head>
+<body class="bg-gray-800 text-gray-200 min-h-screen flex flex-col items-center justify-center p-4 lg:p-8">
+
+<div class="w-full max-w-6xl mx-auto bg-black rounded-xl overflow-hidden shadow-2xl border-2 border-gray-700 relative aspect-video flex flex-col">
+
+    <video id="video" class="absolute top-0 left-0 w-full h-full object-cover" loop playsinline poster="https://image.tmdb.org/t/p/original/b264p29I2b5siv2M1Vpka3I3x62.jpg">
+        <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" type="video/mp4" />
+    </video>
+
+    <div id="play-overlay">
+        <div id="play-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+            </svg>
+        </div>
+    </div>
+
+    <!--    <div id="live-stats-bar" class="absolute top-20 left-4 right-4 z-20 flex justify-around p-2 text-xs font-bold text-white bg-black/50 rounded-lg max-w-md mx-auto">-->
+    <!--        <div>👥 用户数: <span id="stat-user">0</span></div>-->
+    <!--        <div>👍 获赞数: <span id="stat-like">0</span></div>-->
+    <!--        <div>💬 评论数: <span id="stat-comment">0</span></div>-->
+    <!--        <div>🎁 礼物数: <span id="stat-gift">0</span></div>-->
+    <!--    </div>-->
+
+    <div class="relative z-10 w-full h-full flex flex-col">
+        <div class="top-gradient p-4 flex justify-between items-start">
+            <div class="flex items-center space-x-3 bg-black/40 p-2 rounded-full">
+                <img src="https://i.pravatar.cc/40?u=tiktok_host" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-pink-500">
+                <div>
+                    <p class="font-bold text-white text-sm">Ella的电影直播间</p>
+                    <p class="text-xs text-gray-300">在线: <span id="online-count">1</span></p>
+                </div>
+                <button class="bg-pink-500 text-white text-xs font-bold px-4 py-1 rounded-full ml-2 hover:bg-pink-600 transition">关注</button>
+            </div>
+            <div id="ws-status" class="w-3 h-3 rounded-full bg-red-500 mt-2 mr-2" title="WebSocket未连接"></div>
+        </div>
+
+        <div class="flex-grow"></div>
+
+        <div class="bottom-gradient p-4 w-full flex items-end">
+            <div id="comment-scroll-area" class="w-1/2 lg:w-5/12 h-2/5 flex flex-col justify-end overflow-hidden">
+                <div id="comment-container" class="max-h-full overflow-y-auto pr-4">
+                </div>
+                <div id="notification-container" class="absolute bottom-28 left-4">
+                </div>
+            </div>
+
+            <div class="w-1/2 lg:w-7/12 flex flex-col items-end justify-end space-y-4">
+                <button onclick="sendLike()" class="bg-black/30 p-3 rounded-full transform transition hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" /></svg>
+                </button>
+                <button onclick="toggleCommentInput()" class="bg-black/30 p-3 rounded-full transform transition hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                </button>
+                <button onclick="sendGift()" class="bg-black/30 p-3 rounded-full transform transition hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4z" /></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 视频进度条+时间+播放按钮 -->
+    <div id="video-progress-container"
+         class="absolute left-0 bottom-0 w-full h-5 z-30 flex items-center px-4"
+         style="pointer-events:auto; background:rgba(0,0,0,0.18)">
+        <!-- 1. 播放/暂停按钮放最左 -->
+        <button id="video-play-pause-btn"
+                class="mr-3 w-7 h-7 flex items-center justify-center rounded-full bg-gray-700 hover:bg-pink-600 transition"
+                title="播放/暂停">
+            <svg id="video-play-pause-icon" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"></svg>
+        </button>
+        <!-- 2. 进度条本体居中 -->
+        <div class="flex-1 relative h-2 flex items-center cursor-pointer group">
+            <div id="video-progress-bar-bg" class="absolute left-0 top-0 h-1 w-full bg-gray-700 rounded-full"></div>
+            <div id="video-progress-bar"
+                 class="absolute left-0 top-0 h-1 bg-pink-500 rounded-full transition-all duration-200"
+                 style="width:0%">
+
+            </div>
+            <!--            &lt;!&ndash; 小滑块可选 &ndash;&gt;-->
+            <!--            <div id="video-progress-thumb"-->
+            <!--                 class="absolute -top-1 w-3 h-3 bg-pink-500 rounded-full shadow group-hover:scale-125 transition"-->
+            <!--                 style="left:0%;">-->
+            <!--            </div>-->
+
+        </div>
+        <!-- 3. 时间信息放最右 -->
+        <span id="video-time-display" class="text-xs text-gray-300 ml-3 whitespace-nowrap" style="width:64px;">00:00 / 00:00</span>
+    </div>
+
+
+
+    <div id="heart-container" class="absolute bottom-0 right-0 h-full w-full z-20 pointer-events-none"></div>
+    <div id="gift-banner-container" class="absolute top-16 left-0 w-full z-30 pointer-events-none p-4"></div>
+
+</div>
+
+<div id="analytics-dashboard" class="w-full max-w-6xl mx-auto mt-8 p-4 bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl">
+    <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+        播放实时数据看板（Kafka flink）
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">直播间ID</p>
+            <p id="dash-stream-id" class="text-lg font-semibold text-white">-</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">直播状态</p>
+            <div class="flex items-center">
+                <div class="blinking-dot w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                <p class="text-lg font-semibold text-green-400">直播中</p>
+            </div>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">📈 累积观看次数</p>
+            <p id="dash-realtime-users" class="text-2xl font-bold text-cyan-400">0</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">👥 实时在线人数</p>
+            <p id="dash-peak-users" class="text-2xl font-bold text-cyan-400">0</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">👍 累计获赞数</p>
+            <p id="dash-total-likes" class="text-2xl font-bold text-pink-400">0</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">💬 累计评论数</p>
+            <p id="dash-total-comments" class="text-2xl font-bold text-white">0</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">🎁 累计礼物价值</p>
+            <p id="dash-total-gifts" class="text-2xl font-bold text-yellow-400">0</p>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <p class="text-sm text-gray-400">⏱️ 播放时长</p>
+            <p id="dash-stream-duration" class="text-lg font-semibold text-white">00:00:00</p>
+        </div>
+    </div>
+</div>
+
+<div id="comment-input-container" class="fixed bottom-0 left-0 w-full bg-gray-900 p-2 border-t border-gray-700 z-50 transform translate-y-full transition-transform duration-300">
+    <div class="flex max-w-6xl mx-auto px-4">
+        <input type="text" id="comment-input" placeholder="说点什么..." class="w-full bg-gray-700 text-white rounded-l-full px-4 focus:outline-none">
+        <button onclick="sendComment()" class="bg-pink-500 text-white font-bold px-6 py-2 rounded-r-full hover:bg-pink-600">发送</button>
+    </div>
+</div>
+
+
+<script>
+    // --- WebSocket and UI Elements ---
+    // ... (所有元素获取代码保持不变) ...
+    const wsStatus = document.getElementById('ws-status');
+    const commentContainer = document.getElementById('comment-container');
+    const heartContainer = document.getElementById('heart-container');
+    const onlineCountSpan = document.getElementById('online-count');
+    const giftBannerContainer = document.getElementById('gift-banner-container');
+    const notificationContainer = document.getElementById('notification-container');
+    const commentInputContainer = document.getElementById('comment-input-container');
+    const commentInput = document.getElementById('comment-input');
+    const video = document.getElementById('video');
+    const playOverlay = document.getElementById('play-overlay');
+    const progressContainer = document.getElementById('video-progress-container');
+    const progressBar = document.getElementById('video-progress-bar');
+    const timeDisplay = document.getElementById('video-time-display');
+    const playPauseBtn = document.getElementById('video-play-pause-btn');
+    const playPauseIcon = document.getElementById('video-play-pause-icon');
+    const dashPeakUsers = document.getElementById('dash-peak-users');
+
+
+    let ws;
+    const MY_USER_ID = "user_" + Math.random().toString(36).substr(2, 9);
+    const WS_URL = "ws://localhost:8080/ws";
+
+    // --- Data Logic Variables ---
+    const realtimeUserSet = new Set();
+    // NEW: A new Set to track all unique users who have ever joined in this session.
+    const historicalUserSet = new Set();
+
+
+    // --- WebSocket Logic ---
+    function connect() {
+        console.log(`尝试连接到: ${WS_URL}`);
+        ws = new WebSocket(WS_URL);
+
+        ws.onopen = function(event) {
+            console.log("WebSocket 连接成功!");
+            wsStatus.classList.remove('bg-red-500');
+            wsStatus.classList.add('bg-green-500');
+            wsStatus.title = 'WebSocket 已连接';
+            const joinEvent = { userId: MY_USER_ID, eventType: 'user_join' };
+            sendEvent(joinEvent);
+            // Add self to the sets
+            realtimeUserSet.add(MY_USER_ID);
+            historicalUserSet.add(MY_USER_ID);
+            updateAnalyticsDashboard(); // Update dashboard on join
+        };
+
+        ws.onmessage = function(event) {
+            console.log("从服务器收到消息: ", event.data);
+            try {
+                const receivedEvent = JSON.parse(event.data);
+                handleIncomingEvent(receivedEvent);
+            } catch (e) {
+                // Ignore non-JSON messages
+            }
+        };
+
+        ws.onclose = function(event) {
+            console.log("WebSocket 连接已关闭.");
+            wsStatus.classList.remove('bg-green-500');
+            wsStatus.classList.add('bg-red-500');
+            wsStatus.title = 'WebSocket 已断开';
+            realtimeUserSet.delete(MY_USER_ID);
+            updateAnalyticsDashboard(); // Update dashboard on leave
+            setTimeout(connect, 3000);
+        };
+
+        ws.onerror = function(error) {
+            console.error("WebSocket 发生错误: ", error);
+        };
+    }
+
+    function sendEvent(eventObject) {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            eventObject.timestamp = new Date().getTime();
+            const eventString = JSON.stringify(eventObject);
+            ws.send(eventString);
+        } else {
+            console.error("WebSocket 未连接，无法发送事件。");
+        }
+    }
+
+    // --- Event Handler ---
+    function handleIncomingEvent(event) {
+        if (event.userId === MY_USER_ID && event.eventType !== 'user_join') {
+            return;
+        }
+
+        switch (event.eventType) {
+            case 'comment':
+                showComment(event.userId, event.data.text);
+                break;
+            case 'like':
+                createHeartAnimation();
+                break;
+            case 'send_gift':
+                showGiftBanner(event.userId, event.data.giftId);
+                break;
+            case 'user_join':
+                if (event.userId !== MY_USER_ID) {
+                    realtimeUserSet.add(event.userId);
+                    // NEW: Also add new users to the historical set.
+                    historicalUserSet.add(event.userId);
+                    showUserJoinPill(event.userId);
+                    updateAnalyticsDashboard(); // Update dashboard on new user join
+                }
+                break;
+        }
+    }
+
+    // ... (所有UI交互函数如 sendLike, sendComment 等保持不变) ...
+    function sendLike() { createHeartAnimation(); sendEvent({ userId: MY_USER_ID, eventType: 'like' }); }
+    function sendComment() { const text = commentInput.value.trim(); if (text) { showComment(MY_USER_ID, text, true); commentInput.value = ""; toggleCommentInput(); sendEvent({ userId: MY_USER_ID, eventType: 'comment', data: { text: text } }); } }
+    function sendGift() { const giftId = "小火箭 🚀"; showGiftBanner(MY_USER_ID, giftId, true); sendEvent({ userId: MY_USER_ID, eventType: 'send_gift', data: { giftId: giftId, value: 10 } }); }
+    function toggleCommentInput() { commentInputContainer.classList.toggle('translate-y-full'); if (!commentInputContainer.classList.contains('translate-y-full')) { commentInput.focus(); } }
+    commentInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { sendComment(); } });
+    const heartColors = ['#ff0050', '#ffc600', '#00eaff', '#f4f4f4'];
+    function createHeartAnimation() { const heart = document.createElement('div'); heart.innerHTML = '❤️'; heart.className = 'like-heart'; const color = heartColors[Math.floor(Math.random() * heartColors.length)]; const randomX = (Math.random() - 0.5) * 80; const randomRot = (Math.random() - 0.5) * 60; heart.style.color = color; heart.style.transform = `translateX(${randomX}px) rotate(${randomRot}deg)`; heartContainer.appendChild(heart); setTimeout(() => heart.remove(), 2500); }
+    function showComment(userName, text, isMe = false) { const commentDiv = document.createElement('div'); commentDiv.className = 'comment-item flex items-center'; const userDisplay = (userName === MY_USER_ID || isMe) ? "我" : userName.substring(0, 8); const userColor = (userName === MY_USER_ID || isMe) ? 'text-green-300' : 'text-yellow-300'; const avatarUrl = `https://i.pravatar.cc/24?u=${encodeURIComponent(userName)}`; commentDiv.innerHTML = ` <img src="${avatarUrl}" class="w-6 h-6 rounded-full mr-2 border border-white/20"> <div> <span class="font-bold text-sm ${userColor}">${userDisplay}: </span> <span class="text-sm">${text}</span> </div> `; commentContainer.appendChild(commentDiv); commentContainer.scrollTop = commentContainer.scrollHeight; if (commentContainer.children.length > 15) { commentContainer.removeChild(commentContainer.firstChild); } }
+    function showGiftBanner(userName, giftName, isMe = false) { const banner = document.createElement('div'); banner.className = 'gift-banner bg-gradient-to-r from-yellow-400 to-orange-500 p-2 rounded-full flex items-center shadow-lg'; const userDisplay = (userName === MY_USER_ID || isMe) ? "我" : userName.substring(0, 8); const avatarUrl = `https://i.pravatar.cc/32?u=${encodeURIComponent(userName)}`; banner.innerHTML = ` <img src="${avatarUrl}" class="w-8 h-8 rounded-full border-2 border-white"> <div class="ml-2 text-white"> <p class="font-bold text-sm">${userDisplay}</p> <p class="text-xs">送出了 ${giftName}</p> </div> `; giftBannerContainer.appendChild(banner); setTimeout(() => banner.remove(), 4000); }
+    function showUserJoinPill(userName) { const pill = document.createElement('div'); pill.className = 'user-join-pill bg-blue-500/80 text-white text-xs px-3 py-1 rounded-full'; pill.textContent = `${userName.substring(0,8)} 加入了直播间`; notificationContainer.appendChild(pill); setTimeout(() => pill.remove(), 3000); }
+
+
+    // --- Stats WebSocket (for Dashboard) ---
+    // ... (statsWs 逻辑保持不变) ...
+    const statsWs = new WebSocket("ws://localhost:8080/stats-ws");
+    statsWs.onopen = () => console.log('stats-ws 连接成功');
+    statsWs.onmessage = function(event) {
+        const stats = JSON.parse(event.data);
+        console.log('实时收到 stats-ws 数据:', stats);
+        document.getElementById('dash-total-likes').textContent = stats.like || 0;
+        document.getElementById('dash-total-comments').textContent = stats.comment || 0;
+        document.getElementById('dash-total-gifts').textContent = stats.send_gift || 0;
+        document.getElementById('dash-realtime-users').textContent = stats.user_join || 0;
+    };
+    statsWs.onerror = err => console.log('stats-ws 连接出错', err);
+    statsWs.onclose = () => console.log('stats-ws 连接关闭');
+
+
+    // --- Analytics Dashboard Logic ---
+    const dashStreamId = document.getElementById('dash-stream-id');
+    const dashStreamDuration = document.getElementById('dash-stream-duration');
+    const streamId = "SID" + new Date().getTime();
+    const streamStartTime = new Date();
+    dashStreamId.textContent = streamId;
+
+    function updateAnalyticsDashboard() {
+        // Update online count
+        onlineCountSpan.textContent = realtimeUserSet.size;
+
+        // NEW LOGIC: Update cumulative views based on the historical user set size
+        dashPeakUsers.textContent = historicalUserSet.size;
+
+        // Update stream duration
+        const now = new Date();
+        const durationInSeconds = Math.floor((now - streamStartTime) / 1000);
+        const hours = Math.floor(durationInSeconds / 3600).toString().padStart(2, '0');
+        const minutes = Math.floor((durationInSeconds % 3600) / 60).toString().padStart(2, '0');
+        const seconds = (durationInSeconds % 60).toString().padStart(2, '0');
+        dashStreamDuration.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // ... (所有视频播放器逻辑如 formatTime, updateTimeAndProgress 等保持不变) ...
+    function formatTime(seconds) { const h = Math.floor(seconds / 3600); const m = Math.floor((seconds % 3600) / 60); const s = Math.floor(seconds % 60); const pad = (num) => String(num).padStart(2, '0'); if (h > 0) { return `${pad(h)}:${pad(m)}:${pad(s)}`; } return `${pad(m)}:${pad(s)}`; }
+    function updateTimeAndProgress() { if (isNaN(video.duration)) return; const percent = (video.currentTime / video.duration) * 100; progressBar.style.width = `${percent}%`; timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`; }
+    function updatePlayPauseIcon() { if (video.paused) { playPauseIcon.innerHTML = `<path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>`; } else { playPauseIcon.innerHTML = `<rect x="5" y="4" width="3" height="12" rx="1"></rect><rect x="12" y="4" width="3" height="12" rx="1"></rect>`; } }
+    function togglePlayPause() { if (video.paused) { video.play(); } else { video.pause(); } }
+    playOverlay.addEventListener('click', () => { video.play().then(() => { playOverlay.style.opacity = '0'; playOverlay.style.pointerEvents = 'none'; }).catch(error => { console.error("Video playback failed:", error); }); });
+    if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
+    video.addEventListener('play', updatePlayPauseIcon);
+    video.addEventListener('pause', updatePlayPauseIcon);
+    video.addEventListener('loadedmetadata', updateTimeAndProgress);
+    video.addEventListener('timeupdate', updateTimeAndProgress);
+    if (progressContainer) { progressContainer.addEventListener('click', function(e) { const rect = this.getBoundingClientRect(); const x = e.clientX - rect.left; const percent = x / rect.width; video.currentTime = percent * video.duration; }); }
+
+
+    // --- Initializations ---
+    connect();
+    setInterval(updateAnalyticsDashboard, 1000);
+    updateAnalyticsDashboard();
+    updatePlayPauseIcon();
+    timeDisplay.textContent = '00:00 / 00:00';
+
+</script>
+</body>
+</html>
