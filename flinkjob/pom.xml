@@ -40,6 +40,15 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+
+
+
+
         <!-- 日志和测试依赖 -->
         <dependency>
             <groupId>org.slf4j</groupId>

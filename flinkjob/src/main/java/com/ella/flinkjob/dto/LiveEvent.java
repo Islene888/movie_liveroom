@@ -1,5 +1,7 @@
 package com.ella.flinkjob.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class LiveEvent {
     private String userId;
     private String eventType;
@@ -15,6 +17,15 @@ public class LiveEvent {
     public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
     public EventData getData() { return data; }
     public void setData(EventData data) { this.data = data; }
+
+    public static LiveEvent fromJson(String s) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(s, LiveEvent.class);
+        } catch (Exception e) {
+            throw new RuntimeException("JSON 解析失败: " + s, e);
+        }
+    }
 
     public static class EventData {
         private String text;    // For comments

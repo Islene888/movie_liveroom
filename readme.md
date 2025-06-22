@@ -78,7 +78,7 @@ docker-compose down
 
 ## 重新构建镜像示例
 
-如果你修改了代码（尤其是 Kafka 地址等硬编码配置），需要重新打包并构建镜像：
+如果修改了代码（尤其是 Kafka 地址等硬编码配置），需要重新打包并构建镜像：
 
 ```bash
 ./mvnw clean package -DskipTests
@@ -88,8 +88,47 @@ docker-compose up -d --no-deps --build backend
 
 ---
 
-## 其他建议
 
-* 尽量使用环境变量传递配置，避免硬编码
-* Kafka 依赖和 Flink 依赖请放置在指定目录，避免版本冲突
-* 监控日志用 `docker-compose logs -f 服务名` 查看，如 `docker-compose logs -f backend` 或 `docker-compose logs -f jobmanager`
+
+
+### 部署
+* 1.上传
+   ```sh
+    scp -i ~/Desktop/good_luck.pem -r /Users/islenezhao/IdeaProjects/movie_liveroom ubuntu@18.216.138.180:~/
+   ```
+* 2.进入ec2
+
+   ```sh
+   ssh -i ~/Desktop/good_luck.pem ubuntu@ec2-3-15-170-2.us-east-2.compute.amazonaws.com
+   cd ~/movie_liveroom
+   ls -lh
+   ```
+
+* 3.安装 Docker & Docker Compose
+   ```sh
+    # 安装 Docker
+     sudo apt-get update
+     sudo apt-get install -y git curl docker.io docker-compose
+     sudo usermod -aG docker $USER
+  # 立即刷新docker权限
+    newgrp docker
+   ```
+
+
+```sh 
+    # 启动 docker
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    
+    # 让 ubuntu 用户可以免 sudo 用 docker
+    sudo usermod -aG docker ubuntu
+    # **执行后最好 exit 一次重连 ssh**
+    sudo docker-compose up -d
+    sudo docker ps
+```
+
+   ```sh
+    # **执行后最好 exit 一次重连 ssh**
+    sudo docker-compose up -d
+    sudo docker ps
+   ```
