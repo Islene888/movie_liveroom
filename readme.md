@@ -132,24 +132,11 @@ docker-compose up -d --no-deps --build backend
    docker-compose down
   
    sudo docker-compose up -d
+  #前端静态部署
+   sudo apt-get install nginx
+   sudo cp -r /home/islenezhao/movie_liveroom/frontend/* /var/www/html/
+   sudo systemctl restart nginx
 
+  #访问：http://34.134.39.193/
    ```
-
-
-```sh 
-    # 启动 docker
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    
-    # 让 ubuntu 用户可以免 sudo 用 docker
-    sudo usermod -aG docker ubuntu
-    # **执行后最好 exit 一次重连 ssh**
-    sudo docker-compose up -d
-    sudo docker ps
-```
-
-   ```sh
-    # **执行后最好 exit 一次重连 ssh**
-    sudo docker-compose up -d
-    sudo docker ps
-   ```
+  
