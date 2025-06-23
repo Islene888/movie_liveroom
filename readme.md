@@ -118,7 +118,17 @@ docker-compose up -d --no-deps --build backend
   git clone https://github.com/Islene888/movie_liveroom.git
 
    cd movie_liveroom
-  
+      # flink打包
+  cd ~/movie_liveroom/flinkjob
+  mvn clean install
+
+    # 后端打包
+  cd ~/movie_liveroom/backend
+  mvn clean package
+
+  sudo apt-get install -y maven openjdk-17-jdk
+  mvn clean package -DskipTests
+
    docker-compose down
   
    sudo docker-compose up -d
