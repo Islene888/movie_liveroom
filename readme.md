@@ -138,5 +138,32 @@ docker-compose up -d --no-deps --build backend
    sudo systemctl restart nginx
 
   #访问：http://34.134.39.193/
-   ```
   
+  
+
+## **标准 Flink JobManager 手动启动流程总结**
+
+1. **打包 jar**
+
+   ```bash
+   mvn clean package -DskipTests
+   ```
+
+2. **拷贝 jar 到 jobmanager 容器**
+
+   ```bash
+   docker cp target/flinkjob-0.0.1-SNAPSHOT.jar jobmanager:/opt/flink/
+   ```
+
+3. **进入容器**
+
+   ```bash
+   docker exec -it jobmanager bash
+   ```
+
+4. **运行 Flink 任务**
+
+   ```bash
+   cd /opt/flink
+   ./bin/flink run -c com.ella.flinkjob.FlinkEventTypeAggregator flinkjob-0.0.1-SNAPSHOT.jar
+   ```

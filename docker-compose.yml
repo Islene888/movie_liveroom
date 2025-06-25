@@ -16,6 +16,10 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     networks:
       - appnet
+    volumes:
+      - ./zk-data:/var/lib/zookeeper/data
+      - ./zk-log:/var/lib/zookeeper/log
+
 
   kafka:
     platform: linux/amd64
@@ -23,6 +27,7 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
+      - "29092:29092"
     depends_on:
       - zookeeper
     environment:
@@ -32,7 +37,8 @@ services:
       # 区分对内和对外监听器，这是最健壮的配置方式
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://34.134.39.193:9092
+#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://34.134.39.193:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       # --- 其他基础配置 ---
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -40,8 +46,10 @@ services:
       KAFKA_HEAP_OPTS: "-Xmx256M -Xms128M"
     networks:
       - appnet
+    volumes:
+      - ./kafka-data:/var/lib/kafka/data
     healthcheck:
-      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "Kafka:9092", "--list"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -55,6 +63,7 @@ services:
     environment:
       FLINK_PROPERTIES: |
         jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
     depends_on:
       - kafka
     networks:
@@ -76,6 +85,7 @@ services:
     environment:
       FLINK_PROPERTIES: |
         jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 2
     networks:
       - appnet
     volumes:
@@ -86,22 +96,45 @@ services:
       - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
       - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
 
-  flink-submitter:
-    image: flink:1.17.1-java11
-    container_name: flink-submitter
-    depends_on:
-      - jobmanager
-      - taskmanager
-    command: /bin/sh -c "flink run -m jobmanager:8081 -c com.ella.flinkjob.FlinkEventTypeAggregator /opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar"
+#
+#  flink-submitter:
+#    image: flink:1.17.1-java11
+#    container_name: flink-submitter
+#    depends_on:
+#      - jobmanager
+#      - taskmanager
+#    command: >
+#      flink run -m jobmanager:8081 -c com.ella.flinkjob.FlinkEventTypeAggregator /opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar --bootstrap.servers kafka:29092 --topic live-events
+#    networks:
+#      - appnet
+#    volumes:
+#      - ./libs/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar
+#      - ./libs/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar
+#      - ./libs/kafka-clients-3.1.0.jar:/opt/flink/lib/kafka-clients-3.1.0.jar
+#      - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
+#      - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
+#      - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+
+
+  streampark:
+    image: apache/streampark:latest
+    container_name: streampark
+    ports:
+      - "10000:10000"
+    volumes:
+      - ./flink-1.17.1:/opt/flink
     networks:
       - appnet
-    volumes:
-      - ./libs/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar
-      - ./libs/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar
-      - ./libs/kafka-clients-3.1.0.jar:/opt/flink/lib/kafka-clients-3.1.0.jar
-      - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
-      - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
-      - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+    restart: unless-stopped
+
 
 
 
@@ -112,13 +145,15 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile  # 你的 Spring Boot 后端 Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - kafka
     environment:
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BROKER}
+      - KAFKA_BROKER=kafka:29092
+      # 如果 Spring Boot 支持 SPRING_KAFKA_BOOTSTRAP_SERVERS，可以加（通常直接写 KAFKA_BROKER 就行）
+      # - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
     networks:
       - appnet
 
@@ -128,7 +163,8 @@ services:
 
 
 
-  # -----------------------------------------------------------------
+
+    # -----------------------------------------------------------------
   # 你的 Spring Boot 后端
   # -----------------------------------------------------------------
 #
@@ -306,6 +342,10 @@ volumes:
   datanode-data:
   pgdata:
   minio_data:
+  kafka-data:
+  zk-data:
+  zk-log:
+
 
 networks:
   appnet:
