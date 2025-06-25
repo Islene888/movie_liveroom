@@ -1,0 +1,859 @@
+2025-06-22 19:25:55,044 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2025-06-22 19:25:55,047 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Preconfiguration: 
+2025-06-22 19:25:55,048 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - 
+
+
+RESOURCE_PARAMS extraction logs:
+jvm_params: -Xmx1073741824 -Xms1073741824 -XX:MaxMetaspaceSize=268435456
+dynamic_configs: -D jobmanager.memory.off-heap.size=134217728b -D jobmanager.memory.jvm-overhead.min=201326592b -D jobmanager.memory.jvm-metaspace.size=268435456b -D jobmanager.memory.heap.size=1073741824b -D jobmanager.memory.jvm-overhead.max=201326592b
+logs: WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+INFO  [] - Loading configuration property: blob.server.port, 6124
+INFO  [] - Loading configuration property: taskmanager.memory.process.size, 1728m
+INFO  [] - Loading configuration property: taskmanager.bind-host, 0.0.0.0
+INFO  [] - Loading configuration property: jobmanager.execution.failover-strategy, region
+INFO  [] - Loading configuration property: jobmanager.rpc.address, jobmanager
+INFO  [] - Loading configuration property: jobmanager.memory.process.size, 1600m
+INFO  [] - Loading configuration property: jobmanager.rpc.port, 6123
+INFO  [] - Loading configuration property: query.server.port, 6125
+INFO  [] - Loading configuration property: rest.bind-address, 0.0.0.0
+INFO  [] - Loading configuration property: jobmanager.bind-host, 0.0.0.0
+INFO  [] - Loading configuration property: parallelism.default, 1
+INFO  [] - Loading configuration property: taskmanager.numberOfTaskSlots, 1
+INFO  [] - Loading configuration property: rest.address, 0.0.0.0
+INFO  [] - The derived from fraction jvm overhead memory (160.000mb (167772162 bytes)) is less than its min value 192.000mb (201326592 bytes), min value will be used instead
+INFO  [] - Final Master Memory configuration:
+INFO  [] -   Total Process Memory: 1.563gb (1677721600 bytes)
+INFO  [] -     Total Flink Memory: 1.125gb (1207959552 bytes)
+INFO  [] -       JVM Heap:         1024.000mb (1073741824 bytes)
+INFO  [] -       Off-heap:         128.000mb (134217728 bytes)
+INFO  [] -     JVM Metaspace:      256.000mb (268435456 bytes)
+INFO  [] -     JVM Overhead:       192.000mb (201326592 bytes)
+
+2025-06-22 19:25:55,048 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2025-06-22 19:25:55,049 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Starting StandaloneSessionClusterEntrypoint (Version: 1.17.1, Scala: 2.12, Rev:2750d5c, Date:2023-05-19T10:45:46+02:00)
+2025-06-22 19:25:55,049 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  OS current user: flink
+2025-06-22 19:25:55,050 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Current Hadoop/Kerberos user: <no hadoop dependency found>
+2025-06-22 19:25:55,051 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM: OpenJDK 64-Bit Server VM - Eclipse Adoptium - 11/11.0.21+9
+2025-06-22 19:25:55,052 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Arch: aarch64
+2025-06-22 19:25:55,053 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Maximum heap size: 1024 MiBytes
+2025-06-22 19:25:55,054 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JAVA_HOME: /opt/java/openjdk
+2025-06-22 19:25:55,054 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  No Hadoop Dependency available
+2025-06-22 19:25:55,057 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  JVM Options:
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Xmx1073741824
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Xms1073741824
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -XX:MaxMetaspaceSize=268435456
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog.file=/opt/flink/log/flink--standalonesession-1-2376e25bedce.log
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog4j.configuration=file:/opt/flink/conf/log4j-console.properties
+2025-06-22 19:25:55,059 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlog4j.configurationFile=file:/opt/flink/conf/log4j-console.properties
+2025-06-22 19:25:55,060 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -Dlogback.configurationFile=file:/opt/flink/conf/logback-console.xml
+2025-06-22 19:25:55,061 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Program Arguments:
+2025-06-22 19:25:55,064 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2025-06-22 19:25:55,066 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.off-heap.size=134217728b
+2025-06-22 19:25:55,068 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2025-06-22 19:25:55,070 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-overhead.min=201326592b
+2025-06-22 19:25:55,070 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2025-06-22 19:25:55,071 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-metaspace.size=268435456b
+2025-06-22 19:25:55,072 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2025-06-22 19:25:55,072 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.heap.size=1073741824b
+2025-06-22 19:25:55,073 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     -D
+2025-06-22 19:25:55,073 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     jobmanager.memory.jvm-overhead.max=201326592b
+2025-06-22 19:25:55,074 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     --configDir
+2025-06-22 19:25:55,074 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     /opt/flink/conf
+2025-06-22 19:25:55,074 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     --executionMode
+2025-06-22 19:25:55,075 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -     cluster
+2025-06-22 19:25:55,075 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] -  Classpath: /opt/flink/lib/flink-cep-1.17.1.jar:/opt/flink/lib/flink-connector-files-1.17.1.jar:/opt/flink/lib/flink-connector-kafka-1.17.1.jar:/opt/flink/lib/flink-csv-1.17.1.jar:/opt/flink/lib/flinkjob-0.0.1-SNAPSHOT.jar:/opt/flink/lib/flink-json-1.17.1.jar:/opt/flink/lib/flink-scala_2.12-1.17.1.jar:/opt/flink/lib/flink-table-api-java-uber-1.17.1.jar:/opt/flink/lib/flink-table-planner-loader-1.17.1.jar:/opt/flink/lib/flink-table-runtime-1.17.1.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar:/opt/flink/lib/kafka-clients-3.1.0.jar:/opt/flink/lib/log4j-1.2-api-2.17.1.jar:/opt/flink/lib/log4j-api-2.17.1.jar:/opt/flink/lib/log4j-core-2.17.1.jar:/opt/flink/lib/log4j-slf4j-impl-2.17.1.jar:/opt/flink/lib/flink-dist-1.17.1.jar::::
+2025-06-22 19:25:55,075 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - --------------------------------------------------------------------------------
+2025-06-22 19:25:55,078 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Registered UNIX signal handlers for [TERM, HUP, INT]
+2025-06-22 19:25:55,089 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: blob.server.port, 6124
+2025-06-22 19:25:55,089 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.memory.process.size, 1728m
+2025-06-22 19:25:55,089 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.bind-host, 0.0.0.0
+2025-06-22 19:25:55,089 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.execution.failover-strategy, region
+2025-06-22 19:25:55,090 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.rpc.address, jobmanager
+2025-06-22 19:25:55,090 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.memory.process.size, 1600m
+2025-06-22 19:25:55,090 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.rpc.port, 6123
+2025-06-22 19:25:55,090 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: query.server.port, 6125
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: rest.bind-address, 0.0.0.0
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: jobmanager.bind-host, 0.0.0.0
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: parallelism.default, 1
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: taskmanager.numberOfTaskSlots, 1
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading configuration property: rest.address, 0.0.0.0
+2025-06-22 19:25:55,091 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading dynamic configuration property: jobmanager.memory.off-heap.size, 134217728b
+2025-06-22 19:25:55,092 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading dynamic configuration property: jobmanager.memory.jvm-overhead.min, 201326592b
+2025-06-22 19:25:55,092 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading dynamic configuration property: jobmanager.memory.jvm-metaspace.size, 268435456b
+2025-06-22 19:25:55,093 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading dynamic configuration property: jobmanager.memory.heap.size, 1073741824b
+2025-06-22 19:25:55,094 INFO  org.apache.flink.configuration.GlobalConfiguration           [] - Loading dynamic configuration property: jobmanager.memory.jvm-overhead.max, 201326592b
+2025-06-22 19:25:55,149 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Starting StandaloneSessionClusterEntrypoint.
+2025-06-22 19:25:55,206 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Install default filesystem.
+2025-06-22 19:25:55,210 INFO  org.apache.flink.core.fs.FileSystem                          [] - Hadoop is not in the classpath/dependencies. The extended set of supported File Systems via Hadoop is not available.
+2025-06-22 19:25:55,234 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-prometheus
+2025-06-22 19:25:55,238 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-influx
+2025-06-22 19:25:55,238 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-slf4j
+2025-06-22 19:25:55,238 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-graphite
+2025-06-22 19:25:55,239 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: external-resource-gpu
+2025-06-22 19:25:55,240 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-datadog
+2025-06-22 19:25:55,240 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-jmx
+2025-06-22 19:25:55,240 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID not found, creating it: metrics-statsd
+2025-06-22 19:25:55,274 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Install security context.
+2025-06-22 19:25:55,302 INFO  org.apache.flink.runtime.security.modules.HadoopModuleFactory [] - Cannot create Hadoop Security Module because Hadoop cannot be found in the Classpath.
+2025-06-22 19:25:55,315 INFO  org.apache.flink.runtime.security.modules.JaasModule         [] - Jaas file will be created as /tmp/jaas-8269092601402526419.conf.
+2025-06-22 19:25:55,330 INFO  org.apache.flink.runtime.security.contexts.HadoopSecurityContextFactory [] - Cannot install HadoopSecurityContext because Hadoop cannot be found in the Classpath.
+2025-06-22 19:25:55,333 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Initializing cluster services.
+2025-06-22 19:25:55,341 INFO  org.apache.flink.runtime.entrypoint.ClusterEntrypoint        [] - Using working directory: WorkingDirectory(/tmp/jm_f9ae469beb666bc76c2459f4e66fd17d).
+2025-06-22 19:25:55,747 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Trying to start actor system, external address jobmanager:6123, bind address 0.0.0.0:6123.
+2025-06-22 19:25:56,338 INFO  akka.event.slf4j.Slf4jLogger                                 [] - Slf4jLogger started
+2025-06-22 19:25:56,372 INFO  akka.remote.RemoteActorRefProvider                           [] - Akka Cluster not in use - enabling unsafe features anyway because `akka.remote.use-unsafe-remote-features-outside-cluster` has been enabled.
+2025-06-22 19:25:56,373 INFO  akka.remote.Remoting                                         [] - Starting remoting
+2025-06-22 19:25:56,529 INFO  akka.remote.Remoting                                         [] - Remoting started; listening on addresses :[akka.tcp://flink@jobmanager:6123]
+2025-06-22 19:25:56,609 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Actor system started at akka.tcp://flink@jobmanager:6123
+2025-06-22 19:25:56,618 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Loading delegation token providers
+2025-06-22 19:25:56,621 INFO  org.apache.flink.runtime.security.token.hadoop.HadoopFSDelegationTokenProvider [] - Hadoop FS is not available (not packaged with this application): NoClassDefFoundError : "org/apache/hadoop/conf/Configuration".
+2025-06-22 19:25:56,621 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Delegation token provider hadoopfs loaded and initialized
+2025-06-22 19:25:56,622 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Delegation token provider hbase loaded and initialized
+2025-06-22 19:25:56,622 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-prometheus
+2025-06-22 19:25:56,623 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-influx
+2025-06-22 19:25:56,623 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-slf4j
+2025-06-22 19:25:56,623 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-graphite
+2025-06-22 19:25:56,623 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: external-resource-gpu
+2025-06-22 19:25:56,623 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-datadog
+2025-06-22 19:25:56,624 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-jmx
+2025-06-22 19:25:56,624 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-statsd
+2025-06-22 19:25:56,624 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Delegation token providers loaded successfully
+2025-06-22 19:25:56,625 INFO  org.apache.flink.runtime.security.token.DelegationTokenReceiverRepository [] - Loading delegation token receivers
+2025-06-22 19:25:56,628 INFO  org.apache.flink.runtime.security.token.DelegationTokenReceiverRepository [] - Delegation token receiver hadoopfs loaded and initialized
+2025-06-22 19:25:56,628 INFO  org.apache.flink.runtime.security.token.DelegationTokenReceiverRepository [] - Delegation token receiver hbase loaded and initialized
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-prometheus
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-influx
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-slf4j
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-graphite
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: external-resource-gpu
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-datadog
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-jmx
+2025-06-22 19:25:56,628 INFO  org.apache.flink.core.plugin.DefaultPluginManager            [] - Plugin loader with ID found, reusing it: metrics-statsd
+2025-06-22 19:25:56,629 INFO  org.apache.flink.runtime.security.token.DelegationTokenReceiverRepository [] - Delegation token receivers loaded successfully
+2025-06-22 19:25:56,629 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Checking provider and receiver instances consistency
+2025-06-22 19:25:56,629 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Provider and receiver instances are consistent
+2025-06-22 19:25:56,629 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Obtaining delegation tokens
+2025-06-22 19:25:56,633 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Delegation tokens obtained successfully
+2025-06-22 19:25:56,633 WARN  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - No tokens obtained so skipping notifications
+2025-06-22 19:25:56,649 INFO  org.apache.flink.runtime.blob.BlobServer                     [] - Created BLOB server storage directory /tmp/jm_f9ae469beb666bc76c2459f4e66fd17d/blobStorage
+2025-06-22 19:25:56,658 INFO  org.apache.flink.runtime.blob.BlobServer                     [] - Started BLOB server at 0.0.0.0:6124 - max concurrent requests: 50 - max backlog: 1000
+2025-06-22 19:25:56,690 INFO  org.apache.flink.runtime.metrics.MetricRegistryImpl          [] - No metrics reporter configured, no metrics will be exposed/reported.
+2025-06-22 19:25:56,695 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Trying to start actor system, external address jobmanager:0, bind address 0.0.0.0:0.
+2025-06-22 19:25:56,712 INFO  akka.event.slf4j.Slf4jLogger                                 [] - Slf4jLogger started
+2025-06-22 19:25:56,716 INFO  akka.remote.RemoteActorRefProvider                           [] - Akka Cluster not in use - enabling unsafe features anyway because `akka.remote.use-unsafe-remote-features-outside-cluster` has been enabled.
+2025-06-22 19:25:56,717 INFO  akka.remote.Remoting                                         [] - Starting remoting
+2025-06-22 19:25:56,732 INFO  akka.remote.Remoting                                         [] - Remoting started; listening on addresses :[akka.tcp://flink-metrics@jobmanager:40485]
+2025-06-22 19:25:56,740 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils        [] - Actor system started at akka.tcp://flink-metrics@jobmanager:40485
+2025-06-22 19:25:56,755 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.metrics.dump.MetricQueryService at akka://flink-metrics/user/rpc/MetricQueryService .
+2025-06-22 19:25:56,789 INFO  org.apache.flink.runtime.dispatcher.FileExecutionGraphInfoStore [] - Initializing FileExecutionGraphInfoStore: Storage directory /tmp/executionGraphStore-f6be65d8-91fd-476d-a0e5-f920c8a68473, expiration time 3600000, maximum cache size 52428800 bytes.
+2025-06-22 19:25:56,883 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - Upload directory /tmp/flink-web-209d86e8-8320-47e9-a109-992488bf96cb/flink-web-upload does not exist. 
+2025-06-22 19:25:56,885 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - Created directory /tmp/flink-web-209d86e8-8320-47e9-a109-992488bf96cb/flink-web-upload for file uploads.
+2025-06-22 19:25:56,887 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - Starting rest endpoint.
+2025-06-22 19:25:57,117 INFO  org.apache.flink.runtime.webmonitor.WebMonitorUtils          [] - Determined location of main cluster component log file: /opt/flink/log/flink--standalonesession-1-2376e25bedce.log
+2025-06-22 19:25:57,117 INFO  org.apache.flink.runtime.webmonitor.WebMonitorUtils          [] - Determined location of main cluster component stdout file: /opt/flink/log/flink--standalonesession-1-2376e25bedce.out
+2025-06-22 19:25:57,208 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - Rest endpoint listening at 0.0.0.0:8081
+2025-06-22 19:25:57,210 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - http://0.0.0.0:8081 was granted leadership with leaderSessionID=00000000-0000-0000-0000-000000000000
+2025-06-22 19:25:57,210 INFO  org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint   [] - Web frontend listening at http://0.0.0.0:8081.
+2025-06-22 19:25:57,222 INFO  org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunner [] - DefaultDispatcherRunner was granted leadership with leader id 00000000-0000-0000-0000-000000000000. Creating new DispatcherLeaderProcess.
+2025-06-22 19:25:57,226 INFO  org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess [] - Start SessionDispatcherLeaderProcess.
+2025-06-22 19:25:57,228 INFO  org.apache.flink.runtime.resourcemanager.ResourceManagerServiceImpl [] - Starting resource manager service.
+2025-06-22 19:25:57,230 INFO  org.apache.flink.runtime.resourcemanager.ResourceManagerServiceImpl [] - Resource manager service is granted leadership with session id 00000000-0000-0000-0000-000000000000.
+2025-06-22 19:25:57,235 INFO  org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess [] - Recover all persisted job graphs that are not finished, yet.
+2025-06-22 19:25:57,236 INFO  org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess [] - Successfully recovered 0 persisted job graphs.
+2025-06-22 19:25:57,252 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.dispatcher.StandaloneDispatcher at akka://flink/user/rpc/dispatcher_0 .
+2025-06-22 19:25:57,253 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.resourcemanager.StandaloneResourceManager at akka://flink/user/rpc/resourcemanager_1 .
+2025-06-22 19:25:57,289 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Starting the resource manager.
+2025-06-22 19:25:57,310 INFO  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Starting tokens update task
+2025-06-22 19:25:57,310 WARN  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - No tokens obtained so skipping notifications
+2025-06-22 19:25:57,310 WARN  org.apache.flink.runtime.security.token.DefaultDelegationTokenManager [] - Tokens update task not started because either no tokens obtained or none of the tokens specified its renewal date
+2025-06-22 19:25:57,772 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Registering TaskManager with ResourceID 172.19.0.5:38855-015780 (akka.tcp://flink@172.19.0.5:38855/user/rpc/taskmanager_0) at ResourceManager
+2025-06-22 19:26:03,603 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Received JobGraph submission 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,605 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Submitting job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,615 INFO  org.apache.flink.runtime.jobmaster.JobMasterServiceLeadershipRunner [] - JobMasterServiceLeadershipRunner for job 58046588aea17e1e4efd88d728b35fe2 was granted leadership with leader id 00000000-0000-0000-0000-000000000000. Creating new JobMasterServiceProcess.
+2025-06-22 19:26:03,623 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.jobmaster.JobMaster at akka://flink/user/rpc/jobmanager_2 .
+2025-06-22 19:26:03,629 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Initializing job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,646 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using restart back off time strategy NoRestartBackoffTimeStrategy for Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,723 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Created execution graph e226220991235f583880e49e00cecd9d for job 58046588aea17e1e4efd88d728b35fe2.
+2025-06-22 19:26:03,741 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Running initialization on master for job Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,741 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Successfully ran initialization on master in 0 ms.
+2025-06-22 19:26:03,775 INFO  org.apache.flink.runtime.scheduler.adapter.DefaultExecutionTopology [] - Built 1 new pipelined regions in 0 ms, total 1 pipelined regions currently.
+2025-06-22 19:26:03,780 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@4e263ced
+2025-06-22 19:26:03,780 INFO  org.apache.flink.runtime.state.StateBackendLoader            [] - State backend loader loads the state backend as HashMapStateBackend
+2025-06-22 19:26:03,781 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Checkpoint storage is set to 'jobmanager'
+2025-06-22 19:26:03,800 INFO  org.apache.flink.runtime.checkpoint.CheckpointCoordinator    [] - No checkpoint found during restore.
+2025-06-22 19:26:03,803 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using failover strategy org.apache.flink.runtime.executiongraph.failover.flip1.RestartPipelinedRegionFailoverStrategy@5b693ca2 for Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:03,809 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Starting execution of job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2) under job master id 00000000000000000000000000000000.
+2025-06-22 19:26:03,811 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Starting split enumerator for source Source: Kafka Source.
+2025-06-22 19:26:03,812 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Starting scheduling with scheduling strategy [org.apache.flink.runtime.scheduler.strategy.PipelinedRegionSchedulingStrategy]
+2025-06-22 19:26:03,812 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2) switched from state CREATED to RUNNING.
+2025-06-22 19:26:03,814 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from CREATED to SCHEDULED.
+2025-06-22 19:26:03,814 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from CREATED to SCHEDULED.
+2025-06-22 19:26:03,830 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Connecting to ResourceManager akka.tcp://flink@jobmanager:6123/user/rpc/resourcemanager_*(00000000000000000000000000000000)
+2025-06-22 19:26:03,833 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Resolved ResourceManager address, beginning registration
+2025-06-22 19:26:03,834 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Registering job manager 00000000000000000000000000000000@akka.tcp://flink@jobmanager:6123/user/rpc/jobmanager_2 for job 58046588aea17e1e4efd88d728b35fe2.
+2025-06-22 19:26:03,839 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Registered job manager 00000000000000000000000000000000@akka.tcp://flink@jobmanager:6123/user/rpc/jobmanager_2 for job 58046588aea17e1e4efd88d728b35fe2.
+2025-06-22 19:26:03,840 INFO  org.apache.kafka.clients.admin.AdminClientConfig             [] - AdminClientConfig values: 
+	bootstrap.servers = [kafka:29092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = flink-eventtype-forwarder-group-enumerator-admin-client
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2025-06-22 19:26:03,841 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - JobManager successfully registered at ResourceManager, leader id: 00000000000000000000000000000000.
+2025-06-22 19:26:03,843 INFO  org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager [] - Received resource requirements from job 58046588aea17e1e4efd88d728b35fe2: [ResourceRequirement{resourceProfile=ResourceProfile{UNKNOWN}, numberOfRequiredSlots=1}]
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'key.deserializer' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'value.deserializer' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'enable.auto.commit' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'client.id.prefix' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'group.id' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'partition.discovery.interval.ms' was supplied but isn't a known config.
+2025-06-22 19:26:03,885 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2025-06-22 19:26:03,889 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka version: 3.1.0
+2025-06-22 19:26:03,889 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka commitId: 37edeed0777bacb3
+2025-06-22 19:26:03,889 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka startTimeMs: 1750620363885
+2025-06-22 19:26:03,890 INFO  org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator [] - Starting the KafkaSourceEnumerator for consumer group flink-eventtype-forwarder-group without periodic partition discovery.
+2025-06-22 19:26:03,898 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:03,899 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:03,990 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from SCHEDULED to DEPLOYING.
+2025-06-22 19:26:03,991 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Deploying Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (attempt #0) with attempt id e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0 and vertex id cbc357ccb763df2852fee8c4fc7d55f2_0 to 172.19.0.5:38855-015780 @ taskmanager.movie_liveroom_appnet (dataPort=46743) with allocation id b1c7bd56443d5da3f9474cd6be67e87b
+2025-06-22 19:26:03,994 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from SCHEDULED to DEPLOYING.
+2025-06-22 19:26:03,994 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Deploying TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (attempt #0) with attempt id e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0 and vertex id 337adade1e207453ed3502e01d75fd03_0 to 172.19.0.5:38855-015780 @ taskmanager.movie_liveroom_appnet (dataPort=46743) with allocation id b1c7bd56443d5da3f9474cd6be67e87b
+2025-06-22 19:26:04,002 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:04,002 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:04,104 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:04,104 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:04,110 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from DEPLOYING to INITIALIZING.
+2025-06-22 19:26:04,111 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from DEPLOYING to INITIALIZING.
+2025-06-22 19:26:04,277 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from INITIALIZING to RUNNING.
+2025-06-22 19:26:04,288 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from INITIALIZING to RUNNING.
+2025-06-22 19:26:04,288 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Source Source: Kafka Source registering reader for parallel task 0 (#0) @ 172.19.0.5
+2025-06-22 19:26:04,408 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:04,408 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:04,813 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:04,813 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:05,625 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:05,626 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:13,948 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:13,948 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:14,972 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:14,972 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:15,991 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:15,992 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:17,008 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:17,008 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:17,919 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:17,920 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:19,141 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:19,141 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:20,053 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:26:20,053 WARN  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Connection to node -1 (kafka/172.19.0.3:29092) could not be established. Broker may not be available.
+2025-06-22 19:26:21,603 ERROR org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext [] - Exception while handling result from async call in SourceCoordinator-Source: Kafka Source. Triggering job failover.
+org.apache.flink.util.FlinkRuntimeException: Failed to list subscribed topic partitions due to 
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.checkPartitionChanges(KafkaSourceEnumerator.java:234) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$null$1(ExecutorNotifier.java:83) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:40) [flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) [?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [?:?]
+	at java.lang.Thread.run(Unknown Source) [?:?]
+Caused by: java.lang.RuntimeException: Failed to get metadata for topics [live-events].
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:47) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	... 6 more
+Caused by: java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture.get(Unknown Source) ~[?:?]
+	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165) ~[kafka-clients-3.1.0.jar:?]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:44) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	... 6 more
+Caused by: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+2025-06-22 19:26:21,616 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Trying to recover from a global failure.
+org.apache.flink.util.FlinkException: Global failure triggered by OperatorCoordinator for 'Source: Kafka Source -> Filter -> Filter -> Map -> Filter' (operator cbc357ccb763df2852fee8c4fc7d55f2).
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.failJob(OperatorCoordinatorHolder.java:600) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.operators.coordination.RecreateOnResetOperatorCoordinator$QuiesceableContext.failJob(RecreateOnResetOperatorCoordinator.java:237) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.failJob(SourceCoordinatorContext.java:374) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.handleUncaughtExceptionFromAsyncCall(SourceCoordinatorContext.java:387) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:42) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: org.apache.flink.util.FlinkRuntimeException: Failed to list subscribed topic partitions due to 
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.checkPartitionChanges(KafkaSourceEnumerator.java:234) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$null$1(ExecutorNotifier.java:83) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:40) ~[flink-dist-1.17.1.jar:1.17.1]
+	... 6 more
+Caused by: java.lang.RuntimeException: Failed to get metadata for topics [live-events].
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:47) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	... 6 more
+Caused by: java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture.get(Unknown Source) ~[?:?]
+	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165) ~[kafka-clients-3.1.0.jar:?]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:44) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	... 6 more
+Caused by: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+2025-06-22 19:26:21,618 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2) switched from state RUNNING to FAILING.
+org.apache.flink.runtime.JobException: Recovery is suppressed by NoRestartBackoffTimeStrategy
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.handleFailure(ExecutionFailureHandler.java:139) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.getGlobalFailureHandlingResult(ExecutionFailureHandler.java:102) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.scheduler.DefaultScheduler.handleGlobalFailure(DefaultScheduler.java:301) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.lambda$failJob$0(OperatorCoordinatorHolder.java:618) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.lambda$handleRunAsync$4(AkkaRpcActor.java:453) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.concurrent.akka.ClassLoadingUtils.runWithContextClassLoader(ClassLoadingUtils.java:68) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRunAsync(AkkaRpcActor.java:453) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRpcMessage(AkkaRpcActor.java:218) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.FencedAkkaRpcActor.handleRpcMessage(FencedAkkaRpcActor.java:84) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleMessage(AkkaRpcActor.java:168) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:24) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:20) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction.applyOrElse(PartialFunction.scala:127) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction.applyOrElse$(PartialFunction.scala:126) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.applyOrElse(CaseStatements.scala:20) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:175) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.Actor.aroundReceive(Actor.scala:537) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:220) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) [?:?]
+Caused by: org.apache.flink.util.FlinkException: Global failure triggered by OperatorCoordinator for 'Source: Kafka Source -> Filter -> Filter -> Map -> Filter' (operator cbc357ccb763df2852fee8c4fc7d55f2).
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.failJob(OperatorCoordinatorHolder.java:600) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.operators.coordination.RecreateOnResetOperatorCoordinator$QuiesceableContext.failJob(RecreateOnResetOperatorCoordinator.java:237) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.failJob(SourceCoordinatorContext.java:374) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.handleUncaughtExceptionFromAsyncCall(SourceCoordinatorContext.java:387) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:42) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: org.apache.flink.util.FlinkRuntimeException: Failed to list subscribed topic partitions due to 
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.checkPartitionChanges(KafkaSourceEnumerator.java:234) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$null$1(ExecutorNotifier.java:83) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:40) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.lang.RuntimeException: Failed to get metadata for topics [live-events].
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:47) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture.get(Unknown Source) ~[?:?]
+	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165) ~[kafka-clients-3.1.0.jar:?]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:44) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+2025-06-22 19:26:21,624 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from RUNNING to CANCELING.
+2025-06-22 19:26:21,625 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from RUNNING to CANCELING.
+2025-06-22 19:26:21,654 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (e226220991235f583880e49e00cecd9d_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from CANCELING to CANCELED.
+2025-06-22 19:26:21,657 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (e226220991235f583880e49e00cecd9d_337adade1e207453ed3502e01d75fd03_0_0) switched from CANCELING to CANCELED.
+2025-06-22 19:26:21,659 INFO  org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager [] - Clearing resource requirements of job 58046588aea17e1e4efd88d728b35fe2
+2025-06-22 19:26:21,659 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job Flink Kafka EventType Forwarder (58046588aea17e1e4efd88d728b35fe2) switched from state FAILING to FAILED.
+org.apache.flink.runtime.JobException: Recovery is suppressed by NoRestartBackoffTimeStrategy
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.handleFailure(ExecutionFailureHandler.java:139) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.getGlobalFailureHandlingResult(ExecutionFailureHandler.java:102) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.scheduler.DefaultScheduler.handleGlobalFailure(DefaultScheduler.java:301) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.lambda$failJob$0(OperatorCoordinatorHolder.java:618) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.lambda$handleRunAsync$4(AkkaRpcActor.java:453) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.concurrent.akka.ClassLoadingUtils.runWithContextClassLoader(ClassLoadingUtils.java:68) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRunAsync(AkkaRpcActor.java:453) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRpcMessage(AkkaRpcActor.java:218) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.FencedAkkaRpcActor.handleRpcMessage(FencedAkkaRpcActor.java:84) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleMessage(AkkaRpcActor.java:168) ~[flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:24) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:20) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction.applyOrElse(PartialFunction.scala:127) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction.applyOrElse$(PartialFunction.scala:126) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.japi.pf.UnitCaseStatement.applyOrElse(CaseStatements.scala:20) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:175) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.Actor.aroundReceive(Actor.scala:537) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:220) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243) [flink-rpc-akka_c81a1bee-3e09-4f5f-a38f-aa2025817fef.jar:1.17.1]
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool.scan(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source) [?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source) [?:?]
+Caused by: org.apache.flink.util.FlinkException: Global failure triggered by OperatorCoordinator for 'Source: Kafka Source -> Filter -> Filter -> Map -> Filter' (operator cbc357ccb763df2852fee8c4fc7d55f2).
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.failJob(OperatorCoordinatorHolder.java:600) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.operators.coordination.RecreateOnResetOperatorCoordinator$QuiesceableContext.failJob(RecreateOnResetOperatorCoordinator.java:237) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.failJob(SourceCoordinatorContext.java:374) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.handleUncaughtExceptionFromAsyncCall(SourceCoordinatorContext.java:387) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:42) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: org.apache.flink.util.FlinkRuntimeException: Failed to list subscribed topic partitions due to 
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.checkPartitionChanges(KafkaSourceEnumerator.java:234) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$null$1(ExecutorNotifier.java:83) ~[flink-dist-1.17.1.jar:1.17.1]
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:40) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.lang.RuntimeException: Failed to get metadata for topics [live-events].
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:47) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source) ~[?:?]
+	at java.util.concurrent.CompletableFuture.get(Unknown Source) ~[?:?]
+	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165) ~[kafka-clients-3.1.0.jar:?]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:44) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219) ~[flink-connector-kafka-1.17.1.jar:1.17.1]
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80) ~[flink-dist-1.17.1.jar:1.17.1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[?:?]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:?]
+Caused by: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+2025-06-22 19:26:21,660 INFO  org.apache.flink.runtime.checkpoint.CheckpointCoordinator    [] - Stopping checkpoint coordinator for job 58046588aea17e1e4efd88d728b35fe2.
+2025-06-22 19:26:21,668 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Job 58046588aea17e1e4efd88d728b35fe2 reached terminal state FAILED.
+org.apache.flink.runtime.JobException: Recovery is suppressed by NoRestartBackoffTimeStrategy
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.handleFailure(ExecutionFailureHandler.java:139)
+	at org.apache.flink.runtime.executiongraph.failover.flip1.ExecutionFailureHandler.getGlobalFailureHandlingResult(ExecutionFailureHandler.java:102)
+	at org.apache.flink.runtime.scheduler.DefaultScheduler.handleGlobalFailure(DefaultScheduler.java:301)
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.lambda$failJob$0(OperatorCoordinatorHolder.java:618)
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.lambda$handleRunAsync$4(AkkaRpcActor.java:453)
+	at org.apache.flink.runtime.concurrent.akka.ClassLoadingUtils.runWithContextClassLoader(ClassLoadingUtils.java:68)
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRunAsync(AkkaRpcActor.java:453)
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleRpcMessage(AkkaRpcActor.java:218)
+	at org.apache.flink.runtime.rpc.akka.FencedAkkaRpcActor.handleRpcMessage(FencedAkkaRpcActor.java:84)
+	at org.apache.flink.runtime.rpc.akka.AkkaRpcActor.handleMessage(AkkaRpcActor.java:168)
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:24)
+	at akka.japi.pf.UnitCaseStatement.apply(CaseStatements.scala:20)
+	at scala.PartialFunction.applyOrElse(PartialFunction.scala:127)
+	at scala.PartialFunction.applyOrElse$(PartialFunction.scala:126)
+	at akka.japi.pf.UnitCaseStatement.applyOrElse(CaseStatements.scala:20)
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:175)
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176)
+	at scala.PartialFunction$OrElse.applyOrElse(PartialFunction.scala:176)
+	at akka.actor.Actor.aroundReceive(Actor.scala:537)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:535)
+	at akka.actor.AbstractActor.aroundReceive(AbstractActor.scala:220)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:579)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:547)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.apache.flink.util.FlinkException: Global failure triggered by OperatorCoordinator for 'Source: Kafka Source -> Filter -> Filter -> Map -> Filter' (operator cbc357ccb763df2852fee8c4fc7d55f2).
+	at org.apache.flink.runtime.operators.coordination.OperatorCoordinatorHolder$LazyInitializedCoordinatorContext.failJob(OperatorCoordinatorHolder.java:600)
+	at org.apache.flink.runtime.operators.coordination.RecreateOnResetOperatorCoordinator$QuiesceableContext.failJob(RecreateOnResetOperatorCoordinator.java:237)
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.failJob(SourceCoordinatorContext.java:374)
+	at org.apache.flink.runtime.source.coordinator.SourceCoordinatorContext.handleUncaughtExceptionFromAsyncCall(SourceCoordinatorContext.java:387)
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:42)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.flink.util.FlinkRuntimeException: Failed to list subscribed topic partitions due to 
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.checkPartitionChanges(KafkaSourceEnumerator.java:234)
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$null$1(ExecutorNotifier.java:83)
+	at org.apache.flink.util.ThrowableCatchingRunnable.run(ThrowableCatchingRunnable.java:40)
+	... 6 more
+Caused by: java.lang.RuntimeException: Failed to get metadata for topics [live-events].
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:47)
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.TopicListSubscriber.getSubscribedTopicPartitions(TopicListSubscriber.java:52)
+	at org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator.getSubscribedTopicPartitions(KafkaSourceEnumerator.java:219)
+	at org.apache.flink.runtime.source.coordinator.ExecutorNotifier.lambda$notifyReadyAsync$2(ExecutorNotifier.java:80)
+	... 6 more
+Caused by: java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(Unknown Source)
+	at java.base/java.util.concurrent.CompletableFuture.get(Unknown Source)
+	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165)
+	at org.apache.flink.connector.kafka.source.enumerator.subscriber.KafkaSubscriberUtils.getTopicMetadata(KafkaSubscriberUtils.java:44)
+	... 9 more
+Caused by: org.apache.kafka.common.errors.UnknownTopicOrPartitionException: This server does not host this topic-partition.
+2025-06-22 19:26:21,690 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Job 58046588aea17e1e4efd88d728b35fe2 has been registered for cleanup in the JobResultStore after reaching a terminal state.
+2025-06-22 19:26:21,692 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Stopping the JobMaster for job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:21,696 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Closing SourceCoordinator for source Source: Kafka Source.
+2025-06-22 19:26:21,698 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - App info kafka.admin.client for flink-eventtype-forwarder-group-enumerator-admin-client unregistered
+2025-06-22 19:26:21,699 INFO  org.apache.flink.runtime.checkpoint.StandaloneCompletedCheckpointStore [] - Shutting down
+2025-06-22 19:26:21,699 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Disconnect TaskExecutor 172.19.0.5:38855-015780 because: Stopping JobMaster for job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:21,699 INFO  org.apache.flink.runtime.jobmaster.slotpool.DefaultDeclarativeSlotPool [] - Releasing slot [b1c7bd56443d5da3f9474cd6be67e87b].
+2025-06-22 19:26:21,700 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Close ResourceManager connection f9ae469beb666bc76c2459f4e66fd17d: Stopping JobMaster for job 'Flink Kafka EventType Forwarder' (58046588aea17e1e4efd88d728b35fe2).
+2025-06-22 19:26:21,701 INFO  org.apache.kafka.common.metrics.Metrics                      [] - Metrics scheduler closed
+2025-06-22 19:26:21,701 INFO  org.apache.kafka.common.metrics.Metrics                      [] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-06-22 19:26:21,702 INFO  org.apache.kafka.common.metrics.Metrics                      [] - Metrics reporters closed
+2025-06-22 19:26:21,702 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Source coordinator for source Source: Kafka Source closed.
+2025-06-22 19:26:21,703 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Disconnect job manager 00000000000000000000000000000000@akka.tcp://flink@jobmanager:6123/user/rpc/jobmanager_2 for job 58046588aea17e1e4efd88d728b35fe2 from the resource manager.
+2025-06-22 19:34:04,316 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Received JobGraph submission 'Flink Kafka EventType Forwarder' (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,317 INFO  org.apache.flink.runtime.dispatcher.StandaloneDispatcher     [] - Submitting job 'Flink Kafka EventType Forwarder' (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,318 INFO  org.apache.flink.runtime.jobmaster.JobMasterServiceLeadershipRunner [] - JobMasterServiceLeadershipRunner for job 69eb02788aedceced7e08f96f9a829de was granted leadership with leader id 00000000-0000-0000-0000-000000000000. Creating new JobMasterServiceProcess.
+2025-06-22 19:34:04,321 INFO  org.apache.flink.runtime.rpc.akka.AkkaRpcService             [] - Starting RPC endpoint for org.apache.flink.runtime.jobmaster.JobMaster at akka://flink/user/rpc/jobmanager_3 .
+2025-06-22 19:34:04,322 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Initializing job 'Flink Kafka EventType Forwarder' (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,323 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using restart back off time strategy NoRestartBackoffTimeStrategy for Flink Kafka EventType Forwarder (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,324 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Created execution graph ebfcd12c57864c611e7facbece8d4f36 for job 69eb02788aedceced7e08f96f9a829de.
+2025-06-22 19:34:04,325 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Running initialization on master for job Flink Kafka EventType Forwarder (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,325 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Successfully ran initialization on master in 0 ms.
+2025-06-22 19:34:04,328 INFO  org.apache.flink.runtime.scheduler.adapter.DefaultExecutionTopology [] - Built 1 new pipelined regions in 0 ms, total 1 pipelined regions currently.
+2025-06-22 19:34:04,328 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@443a84f3
+2025-06-22 19:34:04,328 INFO  org.apache.flink.runtime.state.StateBackendLoader            [] - State backend loader loads the state backend as HashMapStateBackend
+2025-06-22 19:34:04,328 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Checkpoint storage is set to 'jobmanager'
+2025-06-22 19:34:04,329 INFO  org.apache.flink.runtime.checkpoint.CheckpointCoordinator    [] - No checkpoint found during restore.
+2025-06-22 19:34:04,330 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Using failover strategy org.apache.flink.runtime.executiongraph.failover.flip1.RestartPipelinedRegionFailoverStrategy@1b5f2748 for Flink Kafka EventType Forwarder (69eb02788aedceced7e08f96f9a829de).
+2025-06-22 19:34:04,330 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Starting execution of job 'Flink Kafka EventType Forwarder' (69eb02788aedceced7e08f96f9a829de) under job master id 00000000000000000000000000000000.
+2025-06-22 19:34:04,331 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Starting split enumerator for source Source: Kafka Source.
+2025-06-22 19:34:04,332 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Starting scheduling with scheduling strategy [org.apache.flink.runtime.scheduler.strategy.PipelinedRegionSchedulingStrategy]
+2025-06-22 19:34:04,332 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job Flink Kafka EventType Forwarder (69eb02788aedceced7e08f96f9a829de) switched from state CREATED to RUNNING.
+2025-06-22 19:34:04,332 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (ebfcd12c57864c611e7facbece8d4f36_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from CREATED to SCHEDULED.
+2025-06-22 19:34:04,332 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (ebfcd12c57864c611e7facbece8d4f36_337adade1e207453ed3502e01d75fd03_0_0) switched from CREATED to SCHEDULED.
+2025-06-22 19:34:04,332 INFO  org.apache.kafka.clients.admin.AdminClientConfig             [] - AdminClientConfig values: 
+	bootstrap.servers = [kafka:29092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = flink-eventtype-forwarder-group-enumerator-admin-client
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2025-06-22 19:34:04,333 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Connecting to ResourceManager akka.tcp://flink@jobmanager:6123/user/rpc/resourcemanager_*(00000000000000000000000000000000)
+2025-06-22 19:34:04,338 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - Resolved ResourceManager address, beginning registration
+2025-06-22 19:34:04,339 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Registering job manager 00000000000000000000000000000000@akka.tcp://flink@jobmanager:6123/user/rpc/jobmanager_3 for job 69eb02788aedceced7e08f96f9a829de.
+2025-06-22 19:34:04,341 INFO  org.apache.flink.runtime.resourcemanager.StandaloneResourceManager [] - Registered job manager 00000000000000000000000000000000@akka.tcp://flink@jobmanager:6123/user/rpc/jobmanager_3 for job 69eb02788aedceced7e08f96f9a829de.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'key.deserializer' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'value.deserializer' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'enable.auto.commit' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'client.id.prefix' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'group.id' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'partition.discovery.interval.ms' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 WARN  org.apache.kafka.clients.admin.AdminClientConfig             [] - The configuration 'auto.offset.reset' was supplied but isn't a known config.
+2025-06-22 19:34:04,343 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka version: 3.1.0
+2025-06-22 19:34:04,343 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka commitId: 37edeed0777bacb3
+2025-06-22 19:34:04,343 INFO  org.apache.kafka.common.utils.AppInfoParser                  [] - Kafka startTimeMs: 1750620844343
+2025-06-22 19:34:04,344 INFO  org.apache.flink.runtime.jobmaster.JobMaster                 [] - JobManager successfully registered at ResourceManager, leader id: 00000000000000000000000000000000.
+2025-06-22 19:34:04,345 INFO  org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager [] - Received resource requirements from job 69eb02788aedceced7e08f96f9a829de: [ResourceRequirement{resourceProfile=ResourceProfile{UNKNOWN}, numberOfRequiredSlots=1}]
+2025-06-22 19:34:04,348 INFO  org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator [] - Starting the KafkaSourceEnumerator for consumer group flink-eventtype-forwarder-group without periodic partition discovery.
+2025-06-22 19:34:04,380 INFO  org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator [] - Discovered new partitions: [live-events-0]
+2025-06-22 19:34:04,444 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (ebfcd12c57864c611e7facbece8d4f36_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from SCHEDULED to DEPLOYING.
+2025-06-22 19:34:04,444 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Deploying Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (attempt #0) with attempt id ebfcd12c57864c611e7facbece8d4f36_cbc357ccb763df2852fee8c4fc7d55f2_0_0 and vertex id cbc357ccb763df2852fee8c4fc7d55f2_0 to 172.19.0.5:38855-015780 @ taskmanager.movie_liveroom_appnet (dataPort=46743) with allocation id cddb7b5a1204a532907d2323ddf16be1
+2025-06-22 19:34:04,447 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (ebfcd12c57864c611e7facbece8d4f36_337adade1e207453ed3502e01d75fd03_0_0) switched from SCHEDULED to DEPLOYING.
+2025-06-22 19:34:04,447 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Deploying TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (attempt #0) with attempt id ebfcd12c57864c611e7facbece8d4f36_337adade1e207453ed3502e01d75fd03_0_0 and vertex id 337adade1e207453ed3502e01d75fd03_0 to 172.19.0.5:38855-015780 @ taskmanager.movie_liveroom_appnet (dataPort=46743) with allocation id cddb7b5a1204a532907d2323ddf16be1
+2025-06-22 19:34:04,475 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (ebfcd12c57864c611e7facbece8d4f36_337adade1e207453ed3502e01d75fd03_0_0) switched from DEPLOYING to INITIALIZING.
+2025-06-22 19:34:04,476 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (ebfcd12c57864c611e7facbece8d4f36_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from DEPLOYING to INITIALIZING.
+2025-06-22 19:34:04,490 INFO  org.apache.flink.runtime.source.coordinator.SourceCoordinator [] - Source Source: Kafka Source registering reader for parallel task 0 (#0) @ 172.19.0.5
+2025-06-22 19:34:04,491 INFO  org.apache.flink.connector.kafka.source.enumerator.KafkaSourceEnumerator [] - Assigning splits to readers {0=[[Partition: live-events-0, StartingOffset: -2, StoppingOffset: -9223372036854775808]]}
+2025-06-22 19:34:04,492 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Source: Kafka Source -> Filter -> Filter -> Map -> Filter (1/1) (ebfcd12c57864c611e7facbece8d4f36_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from INITIALIZING to RUNNING.
+2025-06-22 19:34:04,502 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - TriggerWindow(TumblingProcessingTimeWindows(1000), ListStateDescriptor{name=window-contents, defaultValue=null, serializer=org.apache.flink.api.common.typeutils.base.ListSerializer@2e31f435}, ProcessingTimeTrigger(), AllWindowedStream.main(FlinkEventTypeAggregator.java:51)) -> Sink: Writer -> Sink: Committer (1/1) (ebfcd12c57864c611e7facbece8d4f36_337adade1e207453ed3502e01d75fd03_0_0) switched from INITIALIZING to RUNNING.
+2025-06-22 19:39:04,384 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node -1 disconnected.
+2025-06-22 19:44:04,500 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 19:49:04,722 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 19:54:04,940 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 19:59:05,164 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:04:05,368 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:09:05,572 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:14:05,778 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:19:05,937 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:24:06,153 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:29:06,361 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:34:06,550 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:39:06,789 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:44:07,036 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:49:07,261 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:54:07,411 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 20:59:07,650 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:04:07,800 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:09:08,023 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:14:08,284 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:19:08,512 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:24:08,750 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:29:08,981 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:34:09,171 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:39:09,397 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:44:09,625 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:49:09,781 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:54:10,004 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 21:59:10,225 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:04:10,436 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:09:10,656 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:14:10,862 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:19:10,944 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:24:11,161 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:29:11,384 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:34:11,519 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:39:11,715 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-22 22:44:11,898 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:16:29,537 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:21:29,796 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:26:30,018 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:31:30,240 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:36:30,469 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:41:30,675 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:46:30,858 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:51:31,064 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 00:56:31,294 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:01:31,496 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:06:31,713 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:11:31,897 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:16:32,134 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:21:32,322 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:26:32,541 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:31:32,755 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:36:32,941 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:41:33,173 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:46:33,383 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:51:33,601 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 01:56:33,801 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:01:34,031 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:06:34,178 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:11:34,416 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:16:34,624 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:21:34,841 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:26:35,033 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:31:35,201 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:36:35,368 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:41:35,592 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:46:35,821 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:51:51,239 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 02:56:51,450 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:01:51,679 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:06:51,893 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:11:52,094 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:16:52,269 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:21:52,471 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:26:52,657 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:31:52,870 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:36:53,073 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:41:53,284 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:46:53,463 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:51:53,605 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 03:56:53,833 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:01:54,075 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:06:54,253 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:11:54,522 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:16:54,740 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:21:54,960 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:26:55,191 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:31:55,418 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:36:55,590 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:41:55,683 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:46:55,917 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:51:56,143 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 04:56:56,361 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:01:56,574 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:06:56,799 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:11:57,032 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:16:57,239 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:21:57,465 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:26:57,663 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:31:57,868 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:36:58,087 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:41:58,268 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:46:58,416 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:51:58,606 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 05:56:58,788 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:01:58,989 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:06:59,194 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:11:59,421 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:16:59,646 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:21:59,870 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:27:00,067 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:32:00,292 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:37:00,504 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:42:00,689 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:47:00,922 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:52:01,168 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 06:57:01,307 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 07:02:01,511 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 07:07:01,762 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 07:12:01,992 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
+2025-06-23 07:17:02,187 INFO  org.apache.kafka.clients.NetworkClient                       [] - [AdminClient clientId=flink-eventtype-forwarder-group-enumerator-admin-client] Node 1 disconnected.
