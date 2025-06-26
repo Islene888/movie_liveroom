@@ -167,7 +167,6 @@ WantedBy=timers.target
 | Flink job missing after restart           | Use systemd timer + REST script for auto-resub |
 | Git push fails for large files            | Use Git LFS or exclude in `.gitignore`         |
 
-
 ---
 
 ## 📦 Recommended Production Enhancements

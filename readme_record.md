@@ -6,7 +6,6 @@
 这是一个基于 Kafka + Flink + Spring Boot + WebSocket 的直播互动与实时数据统计项目，支持直播弹幕、点赞、送礼等互动事件的实时处理与大屏展示。
 
 ---
-
 ## 快速启动（Docker Compose）
 
 确保本机已安装 Docker 和 Docker Compose。
