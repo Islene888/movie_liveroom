@@ -37,8 +37,8 @@ services:
       # 区分对内和对外监听器，这是最健壮的配置方式
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
-#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://34.134.39.193:9092
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://34.134.39.193:9092
+#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       # --- 其他基础配置 ---
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -75,6 +75,7 @@ services:
       - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
       - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
       - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+      - ./checkpoints:/opt/flink/checkpoints
 
   taskmanager:
     image: flink:1.17.1-java11
@@ -95,6 +96,7 @@ services:
       - ./libs/jackson-annotations-2.13.5.jar:/opt/flink/lib/jackson-annotations-2.13.5.jar
       - ./libs/jackson-core-2.13.5.jar:/opt/flink/lib/jackson-core-2.13.5.jar
       - ./libs/jackson-databind-2.13.5.jar:/opt/flink/lib/jackson-databind-2.13.5.jar
+      - ./checkpoints:/opt/flink/checkpoints
 
 #
 #  flink-submitter:
